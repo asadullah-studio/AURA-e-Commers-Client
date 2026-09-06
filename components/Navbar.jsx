@@ -187,12 +187,17 @@ export default function Navbar() {
 
       {/* Mobile Sidebar Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-[100] lg:hidden">
+          {/* Dark backdrop overlay */}
           <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="fixed inset-y-0 left-0 w-4/5 max-w-xs bg-white shadow-2xl p-6 flex flex-col justify-between z-50">
+          {/* Solid White Sidebar Drawer */}
+          <div
+            className="fixed h-[500px] inset-y-0 left-0 w-[290px] sm:w-[320px] max-w-[85vw] bg-white border-r border-neutral-200 shadow-2xl p-6 flex flex-col justify-between z-[101] overflow-y-auto"
+            style={{ backgroundColor: '#ffffff', opacity: 1 }}
+          >
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-neutral-100">
                 <span className="font-serif tracking-widest text-xl font-bold uppercase text-neutral-950">
@@ -200,19 +205,20 @@ export default function Navbar() {
                 </span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1 text-neutral-500 hover:text-neutral-900"
+                  className="p-1.5 text-neutral-500 hover:text-neutral-900 rounded-lg hover:bg-neutral-100 transition"
+                  aria-label="Close Menu"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <nav className="mt-6 flex flex-col space-y-4">
+              <nav className="mt-6 flex flex-col space-y-2 w-full">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-base uppercase tracking-wider font-medium text-neutral-800 hover:text-neutral-950 py-1"
+                    className="text-sm uppercase tracking-wider font-semibold text-neutral-800 hover:text-neutral-950 py-2.5 px-3 rounded-xl hover:bg-neutral-100 transition"
                   >
                     {link.name}
                   </a>
@@ -221,7 +227,7 @@ export default function Navbar() {
                   <a
                     href="/orders"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-base uppercase tracking-wider font-medium text-neutral-800 hover:text-neutral-950 py-1 flex items-center gap-2"
+                    className="text-sm uppercase tracking-wider font-semibold text-neutral-800 hover:text-neutral-950 py-2.5 px-3 rounded-xl hover:bg-neutral-100 transition flex items-center gap-2"
                   >
                     <Package className="w-4 h-4 text-neutral-500" />
                     My Orders
@@ -237,7 +243,7 @@ export default function Navbar() {
                     setMobileMenuOpen(false);
                     handleLogout();
                   }}
-                  className="w-full py-2.5 px-4 rounded-lg bg-neutral-100 text-red-600 font-semibold text-sm hover:bg-red-50 flex items-center justify-center gap-2 transition"
+                  className="w-full py-2.5 px-4 rounded-xl bg-neutral-100 text-red-600 font-semibold text-xs uppercase tracking-wider hover:bg-red-50 flex items-center justify-center gap-2 transition"
                 >
                   <LogOut className="w-4 h-4" />
                   Sign Out
@@ -246,7 +252,7 @@ export default function Navbar() {
                 <a
                   href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block text-center w-full py-2.5 px-4 rounded-lg bg-neutral-950 text-white font-semibold text-sm hover:bg-neutral-800 transition"
+                  className="block text-center w-full py-3 px-4 rounded-full bg-neutral-950 text-white font-semibold text-xs uppercase tracking-widest hover:bg-neutral-800 transition shadow-sm"
                 >
                   Sign In / Register
                 </a>
